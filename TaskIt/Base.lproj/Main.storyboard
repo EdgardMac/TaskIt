@@ -73,7 +73,7 @@
                     <navigationItem key="navigationItem" id="5lA-el-1gK"/>
                     <connections>
                         <outlet property="tableView" destination="jPT-zN-hhn" id="Kp6-pN-JHb"/>
-                        <segue destination="RMO-da-8nk" kind="show" id="8qf-U1-LcC"/>
+                        <segue destination="RMO-da-8nk" kind="show" identifier="showTaskDetail" id="8qf-U1-LcC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -115,6 +115,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="dueDatePicker" destination="kJ6-9d-tQJ" id="ZeQ-Sm-j25"/>
+                        <outlet property="subtaskTextField" destination="jRB-Ph-Pgd" id="ypw-b1-MUw"/>
+                        <outlet property="taskTextField" destination="ooM-fl-v8u" id="f48-fd-WIF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0S-Zk-tCw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
