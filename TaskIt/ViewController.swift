@@ -23,15 +23,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let date1 = Date.from(year: 2015, month: 10, day: 05)
         let date2 = Date.from(year: 2015, month: 10, day: 06)
         let date3 = Date.from(year: 2015, month: 10, day: 07)
-        
-        let task1 = TaskModel(task: "Study French", subTask: "Verbs", date: date1)
-        let task2 = TaskModel(task: "Eat Dinner", subTask: "Burgers", date: date2)
-        taskArray = [task1, task2, TaskModel(task: "Gym", subTask: "Leg Day", date: date3)]
+    
+        let task1 = TaskModel(task: "Study French", subtask: "Verbs", date: date1)
+        let task2 = TaskModel(task: "Eat Dinner", subtask: "Burgers", date: date2)
+        taskArray = [task1, task2, TaskModel(task: "Gym", subtask: "Leg Day", date: date3)]
         
         self.tableView.reloadData()
-        
-
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -48,9 +52,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let indexPath = self.tableView.indexPathForSelectedRow
             let thisTask = taskArray[indexPath!.row]
             detailVC.detailTaskModel = thisTask
+            detailVC.mainVC = self
+        }
+        
+        else if segue.identifier == "showTaskAdd" {
+            let addTaskVC:AddTaskViewController = segue.destinationViewController as! AddTaskViewController
+            addTaskVC.mainVC = self
         }
         
     }
+    
+    
+    @IBAction func addButtonTapped(sender: UIBarButtonItem) {
+        
+        self.performSegueWithIdentifier("showTaskAdd", sender: self)
+    }
+    
     
     //UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,7 +85,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         
         cell.taskLabel.text = thisTask.task
-        cell.descriptionLabel.text = thisTask.subTask
+        cell.descriptionLabel.text = thisTask.subtask
         cell.dateLabel.text = Date.toString(date: thisTask.date)
         
         
