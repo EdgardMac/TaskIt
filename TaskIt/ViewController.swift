@@ -13,23 +13,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableView: UITableView!
 
-    var taskArray: [Dictionary<String,String>] = []
-    
-    
-    
-    
-    
+    var taskArray: [TaskModel] = []
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let task1: Dictionary<String,String> = ["task":"Study french", "subtask":"verbs", "date":"05/10/2015"]
-        let task2: Dictionary<String,String> = ["task":"Eat Dinner", "subtask":"Burgers","date":"09/10/2015"]
-        let task3: Dictionary<String, String> = ["task":"Gym","subtask":"Leg Day","date":"09/10/2015"]
-        
-        taskArray = [task1, task2, task3]
+        let task1 = TaskModel(task: "Study French", subTask: "Verbs", date: "01/14/2014")
+        let task2 = TaskModel(task: "Eat Dinner", subTask: "Burgers", date: "01/14/2014")
+        taskArray = [task1, task2, TaskModel(task: "Gym", subTask: "Leg Day", date: "01/14/2014")]
         
         self.tableView.reloadData()
         
@@ -52,14 +45,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         print(indexPath.row)
         
-        let taskDict: Dictionary = taskArray[indexPath.row]
+        let thisTask = taskArray[indexPath.row]
         
         var cell: TaskCell = tableView.dequeueReusableCellWithIdentifier("myCell") as! TaskCell
 
         
-        cell.taskLabel.text = taskDict["task"]
-        cell.descriptionLabel.text = taskDict["subtask"]
-        cell.dateLabel.text = taskDict["date"]
+        cell.taskLabel.text = thisTask.task
+        cell.descriptionLabel.text = thisTask.subTask
+        cell.dateLabel.text = thisTask.date
         
         
         return cell
